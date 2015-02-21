@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Category: Software Engineering | Adrian Mejia Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Adrian's blog about Software Engineering, Javascript, NodeJS, Ruby, fun and life.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Adrian Mejia Blog">
+<meta property="og:url" content="http://amejiarosario.github.io/blogx/categories/Software-Engineering/">
+<meta property="og:site_name" content="Adrian Mejia Blog">
+<meta property="og:description" content="Adrian's blog about Software Engineering, Javascript, NodeJS, Ruby, fun and life.">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Adrian Mejia Blog">
+<meta name="twitter:description" content="Adrian's blog about Software Engineering, Javascript, NodeJS, Ruby, fun and life.">
+
+  
+    <link rel="alternative" href="/atom.xml" title="Adrian Mejia Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Adrian Mejia Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">var life = [&#39;work_hard&#39;, &#39;have_fun&#39;, &#39;make_history&#39;];</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="submit" value="&#xF002;" class="search-form-submit"><input type="hidden" name="q" value="site:http://amejiarosario.github.io/blogx"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-angularjs-tutorial-for-beginners-with-nodejs-expressjs-and-mongodb" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2014/09/28/angularjs-tutorial-for-beginners-with-nodejs-expressjs-and-mongodb/" class="article-date">
+  <time datetime="2014-09-29T03:50:24.000Z" itemprop="datePublished">Sep 28 2014</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Software-Engineering/">Software Engineering</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2014/09/28/angularjs-tutorial-for-beginners-with-nodejs-expressjs-and-mongodb/">Angular Js Tutorial for Beginners With Node Js Express Js and Mongo Db (Part I)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>This tutorial is meant to be as clear as possible while at the same time teach you how to connect AngularJS with back-end servers in Node.Js, Express.js and databases such as MongoDB, also known as the MEAN stack. Let’s start with angularJS!</p>
+<!--More-->
+<h1 id="Part_I:_AngularJS">Part I: AngularJS</h1>
+<p>We are going to start building all the examples in a single HTML file, which has embedded javascript and NO styles/CSS for simplicity. In the next tutorials we will learn how to use angularJS modules to break down the code, add testing to it and styles.</p>
+<h2 id="What_is_Angular-js?">What is Angular.js?</h2>
+<img src="/images/angularjs.png" width="200" height="200" title="AngularJS">
+
+<p>Angular.js is a MVW (Model-View-Whatever) open-source JavaScript web framework that facilitates the creation of single-page applications (SPA) and data-driven apps.</p>
+<h2 id="Brief_Background">Brief Background</h2>
+<h3 id="AngularJS_vs_jQuery_vs_BackboneJS_vs_EmberJS">AngularJS vs jQuery vs BackboneJS vs EmberJS</h3>
+<p><a href="#start">TL; DR</a>: AngularJS is awesome for building testable single page applications (SPA), and also data driven and CRUD apps. <a href="#start">Show me the code!.</a></p>
+<p>AngularJS motto is “HTML enhanced for web apps!”. It extends standard HTML tags and properties to bind events and data into it using JavaScript. It has a different approach to other libraries such as jQuery, Backbone.Js, Ember.js and similar… they are more leaned towards “Unobtrusive JavaScript”.</p>
+<p>In the traditional unobtrusive JavaScript approach, instead of declaring the event handlers right in the element that they act upon, they are referenced using IDs and classes in the elements. That gives the advantage of separating structure (HTML) from behavior (Javascript). However, it does not do any better on code complexity and readability.</p>
+<p>Times have changed since then. Let’s examine how AngularJS tries to alleviate code complexity and readability:</p>
+<ul>
+<li><strong>Unit testing</strong> ready: JavaScript is, usually, very hard to unit test when you have DOM manipulations and business logic together (e.g. jQuery based code). AngularJS keeps DOM manipulation in the HTML and business logic separated. Data and dependencies are <code>$inject</code>ed as needed.</li>
+<li><strong>DOM manipulation</strong> where they are used. It decouples DOM manipulation from application logic.</li>
+<li>AngularJS is also excellent for <strong>single-page applications (SPA)</strong>.</li>
+<li>Different <strong>browsers implements</strong> features differently, but fret not. Angular’s directive (or HTML extensions) take care of the differences for you.</li>
+<li><strong>Global namespace</strong> expressions and method definitions are scoped within controllers, so they do not pollute the global namespace.</li>
+<li><strong>Data models</strong> are plain old JavaScript objects (POJO).</li>
+<li>Write less code: AngualarJS features like directives, filters and automatic data bindings save code writing. (More on that later ;)</li>
+<li>AngularJS provides solution for writing modular code and dependencies management.</li>
+</ul>
+<p>Without further ado, let’s dive in!</p>
+<p><a id="start"></a></p>
+<h2 id="AngularJS_Main_Components">AngularJS Main Components</h2>
+<h3 id="AngularJS_Directives">AngularJS Directives</h3>
+<p>The first concept you need to know about AngularJS is what are directives.</p>
+<p><strong>Directives</strong>  are extensions of HTML markups in form of attributes, element names, CSS class and or even HTML comments. When the AngularJS framework is loaded everything inside <code>ng-app</code> it’s compiled by Angular and the directives are bound to data, events and DOM transformations.</p>
+<p>Notice in the following example that there are two directives: <code>ng-app</code> and <code>ng-model</code>.</p>
+<figure class="highlight html"><figcaption><span>Hello World in AngularJS</span><a href="http://codepen.io/amejiarosario/pen/KdLaq" target="_blank" rel="external">link</a></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">html</span> <span class="attribute">ng-app</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="title">head</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="title">title</span>&gt;</span>Hello World in AngularJS<span class="tag">&lt;/<span class="title">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="title">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="title">body</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="title">input</span> <span class="attribute">ng-model</span>=<span class="value">"name"</span>&gt;</span> Hello {{ name }}</div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="title">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="title">html</span>&gt;</span></div></pre></td></tr></table></figure>
+
+<p>We going to learn about some of the main built-in directives as we go:</p>
+<ul>
+<li><p><strong>ng-app</strong>: is a directive that bootstraps AngularJS and designates the caller element as the root. It’s usually placed on <code>&lt;html&gt;</code> or <code>&lt;body&gt;</code>.</p>
+</li>
+<li><p><strong>ng-model</strong>: is a directive that binds form elements such as <code>input</code>, <code>select</code>, <code>checkboxes</code>, <code>textarea</code> or customs ones to a property called <code>$scope</code>. More on <code>$scope</code> and <code>data binding</code> in the next sections, for now bear in mind that the textbox value  it’s bound to <code>{{ name }}</code></p>
+</li>
+<li><p><strong>{{ name }}</strong> <code>{{ }}</code> are a way of binding models to elements in HTML. In the example above the <code>ng-model</code> name is bound to the placeholder <code>{{ name }}</code>. Play with the example bellow to see how the placeholder is updated real-time to whatever you type in the textbox.</p>
+</li>
+</ul>
+<p>Data binding AngularJS example:</p>
+<p data-height="268" data-theme-id="0" data-slug-hash="KdLaq" data-default-tab="result" data-user="amejiarosario" class="codepen">See the Pen <a href="http://codepen.io/amejiarosario/pen/KdLaq/" target="_blank" rel="external">KdLaq</a> by Adrian Mejia (<a href="http://codepen.io/amejiarosario" target="_blank" rel="external">@amejiarosario</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p>
+
+<p>You might be wondering if adding this directive will make the HTML validators to complain about unknown/non-standard attributes and you are right. However, this can be solve prefixing <code>data-</code> to every Angular.js directive and NOT using them as Elements but attributes, classes or comments. Let’s see that in the next example and also let’s create our own directives:</p>
+<figure class="highlight html"><figcaption><span>Directive types: elements, attributes, comments and classes</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="tag">&lt;<span class="title">hello</span>&gt;</span>Element<span class="tag">&lt;/<span class="title">hello</span>&gt;</span> Element</div><div class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">data-hello</span>&gt;</span>Attribute<span class="tag">&lt;/<span class="title">div</span>&gt;</span> data-Attribute</div><div class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">hello</span>&gt;</span>Attribute<span class="tag">&lt;/<span class="title">div</span>&gt;</span> Attribute</div><div class="line"><span class="comment">&lt;!-- directive: hello --&gt;</span> Comment</div><div class="line"><span class="tag">&lt;<span class="title">p</span> <span class="attribute">class</span>=<span class="value">"hello"</span>&gt;</span><span class="tag">&lt;/<span class="title">p</span>&gt;</span> Class</div></pre></td></tr></table></figure>
+
+<p>and</p>
+<figure class="highlight javascript"><figcaption><span>Custom AngularJS directives</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> app = angular.module(<span class="string">'app'</span>, []);</div><div class="line"></div><div class="line">app.directive(<span class="string">'hello'</span>, [<span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>{</div><div class="line">  <span class="keyword">return</span> {</div><div class="line">    restrict: <span class="string">'CEMA'</span>, <span class="comment">// C: class, E: element, M: comments, A: attributes</span></div><div class="line">    replace: <span class="literal">true</span>, <span class="comment">// replaces original content with template</span></div><div class="line">    template: <span class="string">'&lt;span&gt;&lt;br&gt;Hello&lt;/span&gt;'</span></div><div class="line">  }</div><div class="line">}]);</div></pre></td></tr></table></figure>
+
+<p>Working example:</p>
+<p data-height="268" data-theme-id="0" data-slug-hash="varAK" data-default-tab="result" data-user="amejiarosario" class="codepen">See the Pen <a href="http://codepen.io/amejiarosario/pen/varAK/" target="_blank" rel="external">varAK</a> by Adrian Mejia (<a href="http://codepen.io/amejiarosario" target="_blank" rel="external">@amejiarosario</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p>
+
+<p>If you are interested in seeing more options for directives go <a href="http://www.sitepoint.com/practical-guide-angularjs-directives/" target="_blank" rel="external">here</a>.</p>
+<h3 id="AngularJS_Data_Binding">AngularJS Data Binding</h3>
+<p><strong>Data binding</strong> is an AngularJS feature that automatically synchronizes your model data with your HTML. That’s great because models is the “single source of truth” and you do not have to worry about updating them. Here’s a graph from docs.angularjs.org.</p>
+<img src="/images/Two_Way_Data_Binding.png" title="Two Data Binding in Angular Templates">
+
+<p>Whenever the HTML is changed the model gets updated and wherever the model gets updated it is reflected in HTML. </p>
+<h3 id="AngularJS_Scope">AngularJS Scope</h3>
+<p><code>$scope</code> it is an object that contains all the data to which HTML is bound. They are the glue your javascript code (controllers) and the view (HTML). Everything that is attached to the <code>$scope</code>, it is automatically <code>$watch</code>ed by AngularJS and updated.</p>
+<p>Scopes can be bound to javascript functions and also you could have more than one <code>$scope</code> and inherit from outer ones. More on this, in the controllers section.</p>
+<h3 id="AngularJS_Controllers">AngularJS Controllers</h3>
+<p>Angular.js <strong>controllers</strong> are code that “controls” certain sections containing DOM elements in which they are declared. They encapsulate the behavior, callbacks and glue <code>$scope</code> models with views. Let’s see an example to drive the concept home:</p>
+<figure class="highlight html"><figcaption><span>AngularJS Controller Example</span><a href="http://codepen.io/amejiarosario/pen/spuCm" target="_blank" rel="external">link</a></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">body</span> <span class="attribute">ng-controller</span>=<span class="value">"TodoController"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="title">ul</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">li</span> <span class="attribute">ng-repeat</span>=<span class="value">"todo in todos"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"checkbox"</span> <span class="attribute">ng-model</span>=<span class="value">"todo.completed"</span>&gt;</span></div><div class="line">      {{ todo.name }}</div><div class="line">    <span class="tag">&lt;/<span class="title">li</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="title">ul</span>&gt;</span></div><div class="line"></div><div class="line">  <span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript"></span></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">TodoController</span><span class="params">($scope)</span></span>{</div><div class="line">      $scope.todos = [</div><div class="line">        { name: <span class="string">'Master HTML/CSS/Javascript'</span>, completed: <span class="literal">true</span> },</div><div class="line">        { name: <span class="string">'Learn AngularJS'</span>, completed: <span class="literal">false</span> },</div><div class="line">        { name: <span class="string">'Build NodeJS backend'</span>, completed: <span class="literal">false</span> },</div><div class="line">        { name: <span class="string">'Get started with ExpressJS'</span>, completed: <span class="literal">false</span> },</div><div class="line">        { name: <span class="string">'Setup MongoDB database'</span>, completed: <span class="literal">false</span> },</div><div class="line">        { name: <span class="string">'Be awesome!'</span>, completed: <span class="literal">false</span> },</div><div class="line">      ]</div><div class="line">    }</div><div class="line">  <span class="tag">&lt;/<span class="title">script</span>&gt;</span>  </div><div class="line"><span class="tag">&lt;/<span class="title">body</span>&gt;</span></div></pre></td></tr></table></figure>
+
+<p>AngularJS controller interactive example:</p>
+<p data-height="268" data-theme-id="0" data-slug-hash="spuCm" data-default-tab="result" data-user="amejiarosario" class="codepen">See the Pen <a href="http://codepen.io/amejiarosario/pen/spuCm/" target="_blank" rel="external">spuCm</a> by Adrian Mejia (<a href="http://codepen.io/amejiarosario" target="_blank" rel="external">@amejiarosario</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p>
+
+<p>As you might notice we have new friends: <code>ng-controller</code>, <code>ng-repeat</code> and <code>$scope</code>.</p>
+<ul>
+<li><p><strong><code>ng-controller</code></strong> is a directive that tells angular what function controller to use for a particular view. Every time AngularJS loads, it reads the <code>ng-controller</code> argument (in this case “TodoController”). Then, it will look for a function in plain old javascript object (POJO) with the same name or for <code>angular.controller</code> matching name.</p>
+</li>
+<li><p><strong><code>$scope</code></strong> As mentioned earlier <code>$scope</code>‘s are the glue between the data models in the controllers and the views. Take a look to our “TodoController” it has a parameter named <code>$scope</code>. AngularJS is going to pass (<code>$inject</code>) that parameter, and whatever you attach to it, it will be available in the view. In this example is the particular is the <code>todos</code> array of objects.</p>
+</li>
+<li><p><strong><code>ng-repeat</code></strong> as its name implies, it is going to “repeat” the element and sub-elements where this directive is declared. It is going to iterate for each element in the <code>$scope.todos</code> array.</p>
+</li>
+<li><p><strong><code>ng-model</code></strong> notice that the checkbox is bound to the <code>todo.completed</code>. If <code>todo.completed</code> is true, then the checkbox is going to be checked automatically and vice versa.</p>
+</li>
+</ul>
+<h2 id="AngularJS_Modules">AngularJS Modules</h2>
+<p>Modules are a way to encapsulate different parts of your application (directives, controllers, factories, …) and reuse them in other places.  Here’s an example of how to rewrite our controller using modules. </p>
+<figure class="highlight javascript"><figcaption><span>AngularJS Module Example</span><a href="http://codepen.io/amejiarosario/pen/spuCm" target="_blank" rel="external">link</a></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">angular.module(<span class="string">'app'</span>, [])</div><div class="line">  .controller(<span class="string">'TodoController'</span>, [<span class="string">'$scope'</span>, <span class="function"><span class="keyword">function</span> <span class="params">($scope)</span> </span>{</div><div class="line">    $scope.todos = [</div><div class="line">      { title: <span class="string">'Learn Javascript'</span>, completed: <span class="literal">true</span> },</div><div class="line">      { title: <span class="string">'Learn Angular.js'</span>, completed: <span class="literal">false</span> },</div><div class="line">      { title: <span class="string">'Love this tutorial'</span>, completed: <span class="literal">true</span> },</div><div class="line">      { title: <span class="string">'Learn Javascript design patterns'</span>, completed: <span class="literal">false</span> },</div><div class="line">      { title: <span class="string">'Build Node.js backend'</span>, completed: <span class="literal">false</span> },</div><div class="line">    ];</div><div class="line">  }]);</div></pre></td></tr></table></figure>
+
+<p>Notice the <code>&lt;html ng-app=&quot;app&quot;&gt;</code> in the example bellow</p>
+<p data-height="268" data-theme-id="0" data-slug-hash="uFfqG" data-default-tab="result" data-user="amejiarosario" class="codepen">See the Pen <a href="http://codepen.io/amejiarosario/pen/uFfqG/" target="_blank" rel="external">uFfqG</a> by Adrian Mejia (<a href="http://codepen.io/amejiarosario" target="_blank" rel="external">@amejiarosario</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p>
+
+<p>Using modules brings many advantages such as modules can be loaded in any order, parallel dependency loading, tests can only load the required modules and keep it fast, clear view of the dependencies.</p>
+<h2 id="AngularJS_Templates">AngularJS Templates</h2>
+<p>Templates contain HTML and Angular elements (directives, markup, filters or form controls). They can be cached and referenced by an id.</p>
+<p>Here’s an example:</p>
+<figure class="highlight html"><figcaption><span>AngularJS Template Example</span><a href="https://gist.github.com/amejiarosario/eebd176cb1796769ec2b" target="_blank" rel="external">download</a></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/ng-template"</span> <span class="attribute">id</span>=<span class="value">"/todos.html"</span>&gt;</span><span class="javascript"></span></div><div class="line">  &lt;ul&gt;</div><div class="line">    <span class="xml"><span class="tag">&lt;<span class="title">li</span> <span class="attribute">ng-repeat</span>=<span class="value">"todo in todos"</span>&gt;</span></span></div><div class="line">      <span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"checkbox"</span> <span class="attribute">ng-model</span>=<span class="value">"todo.completed"</span>&gt;</span></div><div class="line">      </div><div class="line">    <span class="tag">&lt;/<span class="title">li</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="title">ul</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="title">script</span>&gt;</span></div></pre></td></tr></table></figure>
+
+<p>Does the code inside looks familiar? ;)</p>
+<p>Notice they are inside the <code>script</code> and has a type of <code>text/ng-template</code>.</p>
+<h2 id="AngularJS_Routes_(ngRoutes)">AngularJS Routes (ngRoutes)</h2>
+<p>ngRoutes module allows changing what we see in the app depending on the URL (route). It, usually, uses templates to inject the HTML into the app.</p>
+<p>It does not come with AngularJS core module, so we have to list it as a dependency. We are going to get it from Google CDN:</p>
+<p><code>&lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.min.js&quot;&gt;&lt;/script&gt;</code></p>
+<p><strong>NEW FEATURE</strong>: add notes to the todo tasks. Let’s start with the routes!</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">angular.module(<span class="string">'app'</span>, [<span class="string">'ngRoute'</span>])</div><div class="line">  .config([<span class="string">'$routeProvider'</span>, <span class="function"><span class="keyword">function</span> <span class="params">($routeProvider)</span> </span>{</div><div class="line">    $routeProvider</div><div class="line">      .when(<span class="string">'/'</span>, {</div><div class="line">        templateUrl: <span class="string">'/todos.html'</span>,</div><div class="line">        controller: <span class="string">'TodoController'</span></div><div class="line">      });</div><div class="line">  }]);</div></pre></td></tr></table></figure>
+
+<p data-height="268" data-theme-id="0" data-slug-hash="CmnFH" data-default-tab="result" data-user="amejiarosario" class="codepen">See the Pen <a href="http://codepen.io/amejiarosario/pen/CmnFH/" target="_blank" rel="external">CmnFH</a> by Adrian Mejia (<a href="http://codepen.io/amejiarosario" target="_blank" rel="external">@amejiarosario</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p>
+
+<ul>
+<li><p>First notice that we removed <code>ng-controller=&quot;TodoController&quot;</code> from the body tag. The controllers are now called based on the route.</p>
+</li>
+<li><p><code>ngView</code> is a directive used by <code>$routeProvider</code> to render HTML into it. Every time the URL changes, it will inject a new HTML template and controller into ngView.</p>
+</li>
+</ul>
+<h2 id="AngularJS_Services_(factory)">AngularJS Services (factory)</h2>
+<p>Notice that if you want to create a 2nd controller and share $scope.todos it is not possible right now. That is when services become handy. Services are a way to inject data dependencies into controllers. They are created through factories. Let’s see it in action:</p>
+<figure class="highlight javascript"><figcaption><span>AngularJS Service Factory Example</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">angular.module(<span class="string">'app'</span>, [<span class="string">'ngRoute'</span>])</div><div class="line"></div><div class="line">  .factory(<span class="string">'Todos'</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span></span>{</div><div class="line">    <span class="keyword">return</span> [</div><div class="line">      { name: <span class="string">'AngularJS Directives'</span>, completed: <span class="literal">true</span> },</div><div class="line">      { name: <span class="string">'Data binding'</span>, completed: <span class="literal">true</span> },</div><div class="line">      { name: <span class="string">'$scope'</span>, completed: <span class="literal">true</span> },</div><div class="line">      { name: <span class="string">'Controllers and Modules'</span>, completed: <span class="literal">true</span> },</div><div class="line">      { name: <span class="string">'Templates and routes'</span>, completed: <span class="literal">true</span> },</div><div class="line">      { name: <span class="string">'Filters and Services'</span>, completed: <span class="literal">false</span> },</div><div class="line">      { name: <span class="string">'Get started with Node/ExpressJS'</span>, completed: <span class="literal">false</span> },</div><div class="line">      { name: <span class="string">'Setup MongoDB database'</span>, completed: <span class="literal">false</span> },</div><div class="line">      { name: <span class="string">'Be awesome!'</span>, completed: <span class="literal">false</span> },</div><div class="line">    ];</div><div class="line">  })</div><div class="line"></div><div class="line">  .controller(<span class="string">'TodoController'</span>, [<span class="string">'$scope'</span>, <span class="string">'Todos'</span>, <span class="function"><span class="keyword">function</span> <span class="params">($scope, Todos)</span> </span>{</div><div class="line">    $scope.todos = Todos;</div><div class="line">  }])</div></pre></td></tr></table></figure>
+
+<p>We are now injecting the data dependency <code>Todo</code> into the controllers. This way we could reuse the data to any controller or module that we need to. This is not only used for static data like the array, but we could also do server calls using <code>$http</code> or even RESTful  <code>$resource</code>.</p>
+<p>Let’s say we want to show the details of the task when we click on it. For that, we need to create a 2nd controller, template and route that uses this service:</p>
+<p data-height="268" data-theme-id="0" data-slug-hash="pGkhg" data-default-tab="result" data-user="amejiarosario" class="codepen">See the Pen <a href="http://codepen.io/amejiarosario/pen/pGkhg/" target="_blank" rel="external">pGkhg</a> by Adrian Mejia (<a href="http://codepen.io/amejiarosario" target="_blank" rel="external">@amejiarosario</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p><br>(NOTE: Click on the links and it will take you to the todo details. Use backspace key to go back to the main menu)<br><br>This is what is happening:<br><br>1. In the <code>HTML</code> tab we created a second template <code>/todoDetails.html</code> which contains the todo details we want to show.<br>2. Also, in our previous template <code>/todos.html</code> we want to have a link that points to the <code>todo</code> detail. We are using the <code>$index</code> which is the corresponding order number in a <code>ng-repeat</code>.<br>2. In the <code>JS</code> tab, we created a new <code>$routeProvider</code> which points to a new controller <code>TodoDetailCtrl</code> and the template that we created on #1. The <code>:id</code> parameter it is accessible in the controllers through <code>$routeParams</code>.<br>3. Created the new controller <code>TodoDetailCtrl</code> and inject the dependencies which are <code>$scope</code>, <code>Todos</code> (factory), and <code>$routeParams</code> which will have the <code>id</code> param.<br>4. Set the <code>$scope</code> in the new controller. Instead of using the whole array, we are going to select only the one that we need using the <code>id</code> that we set in step #2.<br><br>NOTE: in codepen, you will not see the URL. If you want to see it changing, you can download the whole example an open it from <a href="https://gist.github.com/amejiarosario/f0a82c7a0eec4786f1c9" target="_blank">here</a>.<br><br>## AngularJS Filters<br><br>Filters allow you to format and transform the output of expressions inside the curly braces. AngularJS comes with a bunch of useful filters.<br><br><strong>Built-in Filters</strong>:<br><br><em> </em>filter<em>: search for a given string in an array and return matches.
+</em> <em>Number</em>: adds comma-separated 1000’s and two decimal places.<br><em> </em>Currency<em>: the same as </em>Number<em> and adds a $ in front.
+</em> <em>Date</em>: takes a Unix timestamp (e.g. 1288323623006) or date string and output it in the format that you specify (e.g. ‘longDate’ or fragments ‘yyyy’ for four-digit year). For a full list see <a href="https://docs.angularjs.org/api/ng/filter/date" target="_blank">here</a>.<br><em> </em>JSON<em>: converts javascript objects to JSON strings.
+</em> <em>lowercase</em>/<em>uppercase</em>: converts strings to lowercase/uppercase.<br><em> </em>limitTo<em>: number of elements from an array to show.
+</em> <em>orderBy</em>: order array of objects by key that you specify.<br><br><strong>Note</strong> you can also chain multiple filters and also define your own filters.<br><br><p data-height="268" data-theme-id="0" data-slug-hash="tyuDK" data-default-tab="result" data-user="amejiarosario" class="codepen">See the Pen <a href="http://codepen.io/amejiarosario/pen/tyuDK/" target="_blank" rel="external">tyuDK</a> by Adrian Mejia (<a href="http://codepen.io/amejiarosario" target="_blank" rel="external">@amejiarosario</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p>
+
+<p><strong>NEW FEATURE</strong>: Search todo tasks by name. Let’s use a filter to solve that problem.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/ng-template"</span> <span class="attribute">id</span>=<span class="value">"/todos.html"</span>&gt;</span><span class="javascript"></span></div><div class="line">  Search: <span class="xml"><span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"text"</span> <span class="attribute">ng-model</span>=<span class="value">"search.name"</span>&gt;</span></span></div><div class="line">  <span class="tag">&lt;<span class="title">ul</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">li</span> <span class="attribute">ng-repeat</span>=<span class="value">"todo in todos | filter: search"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"checkbox"</span> <span class="attribute">ng-model</span>=<span class="value">"todo.completed"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#/"</span>&gt;</span><span class="tag">&lt;/<span class="title">a</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="title">li</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="title">ul</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="title">script</span>&gt;</span></div></pre></td></tr></table></figure>
+
+<p>Notice that we are using <code>search.name</code> in the <code>ng-model</code> for search. That will limit the search to the <code>name</code> attribute and <code>search.notes</code> will look inside the notes only. Guest what <code>search</code> would do then? Precisely! It searches in all the attributes. Fork the following example and try it out:</p>
+<p data-height="268" data-theme-id="0" data-slug-hash="ahwbz" data-default-tab="result" data-user="amejiarosario" class="codepen">See the Pen <a href="http://codepen.io/amejiarosario/pen/ahwbz/" target="_blank" rel="external">ahwbz</a> by Adrian Mejia (<a href="http://codepen.io/amejiarosario" target="_blank" rel="external">@amejiarosario</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p>
+
+<h2 id="What’s_next?">What’s next?</h2>
+<p>Congrats! You have completed part 1. We are going to build upon the things learned in here, in the next post we are going to setup a backend in NodeJS and MongoDB and connect it to AngularJS to provide a full featured CRUD app. Continue with:</p>
+<ul>
+<li>Part II - <a href="/blog/2014/10/01/creating-a-restful-api-tutorial-with-nodejs-and-mongodb/">NodeJS/ExpressJS and MongoDB/Mongoose</a></li>
+</ul>
+<p><a href="/blog/2014/10/01/creating-a-restful-api-tutorial-with-nodejs-and-mongodb/"><img src="/images/nodejs.png" width="200" height="200" title="NodeJS"></a><br><a href="/blog/2014/10/01/creating-a-restful-api-tutorial-with-nodejs-and-mongodb/"><img src="/images/mongodb.png" width="200" height="200" title="MongoDB"></a></p>
+<ul>
+<li>Part III - <a href="/blog/2014/10/03/mean-stack-tutorial-mongodb-expressjs-angularjs-nodejs/">MEAN Stack: Wiring all together</a></li>
+</ul>
+<p>I also have created BackboneJS tutorials check it out:</p>
+<ul>
+<li><a href="/blog/categories/backbonejs">BackboneJS Tutorials</a></li>
+</ul>
+<h3 id="ng-test">ng-test</h3>
+<p>Congrats, you have reached this far! It is time to test what you have learned. Test-Driven Learning (TDL) ;). Here’s the challenge: open <a href="https://gist.githubusercontent.com/amejiarosario/26751cb85d088fd59c28/raw/c2dde0797c8d47d359c2137fc9a15a9228c272ca/index.html" target="_blank">this file</a> on your favorite code editor. Copy the boilerplate code and built the full app that we just build in the previous examples. Of course, you can take a peek from time to time if you get stuck ;)</p>
+<p>Download this file as…:</p>
+<p><a href="https://gist.githubusercontent.com/amejiarosario/26751cb85d088fd59c28/raw/c2dde0797c8d47d359c2137fc9a15a9228c272ca/index.html" target="_blank" rel="external">index.html</a></p>
+<p>-OR- </p>
+<p>Fork and edit online:</p>
+<p data-height="268" data-theme-id="0" data-slug-hash="degzC" data-default-tab="result" data-user="amejiarosario" class="codepen">See the Pen <a href="http://codepen.io/amejiarosario/pen/degzC/" target="_blank" rel="external">degzC</a> by Adrian Mejia (<a href="http://codepen.io/amejiarosario" target="_blank" rel="external">@amejiarosario</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p>
+
+<h3 id="ng-solution">ng-solution</h3>
+<p>This is the full solution and you can see it <a href="https://cdn.rawgit.com/amejiarosario/068143b53e54db43ef38/raw/b703b591bc84f2d59a2a483169294e2fb232419d/ngTodo.html#/" target="_blank">live in here</a>.</p>
+<script src="https://gist.github.com/068143b53e54db43ef38.js"></script>
+
+<script async src="//codepen.io/assets/embed/ei.js"></script>
+
+
+
+
+
+
+
+
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://amejiarosario.github.io/blogx//blog/2014/09/28/angularjs-tutorial-for-beginners-with-nodejs-expressjs-and-mongodb/" data-id="0lwdgv2m1dsq00bv" class="article-share-link">Share</a>
+      
+        <a href="http://amejiarosario.github.io/blogx//blog/2014/09/28/angularjs-tutorial-for-beginners-with-nodejs-expressjs-and-mongodb/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Angularjs/">Angularjs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MEAN-stack/">MEAN stack</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MongoDB/">MongoDB</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tutorials/">tutorials</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+  
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Software-Engineering/">Software Engineering</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Angularjs/">Angularjs</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/">Javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MEAN-stack/">MEAN stack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MongoDB/">MongoDB</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tutorials/">tutorials</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Angularjs/" style="font-size: NaNpx;">Angularjs</a><a href="/tags/Javascript/" style="font-size: NaNpx;">Javascript</a><a href="/tags/MEAN-stack/" style="font-size: NaNpx;">MEAN stack</a><a href="/tags/MongoDB/" style="font-size: NaNpx;">MongoDB</a><a href="/tags/tutorials/" style="font-size: NaNpx;">tutorials</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/blog/2014/09/28/angularjs-tutorial-for-beginners-with-nodejs-expressjs-and-mongodb/">Angular Js Tutorial for Beginners With Node Js Express Js and Mongo Db (Part I)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 Adrian Mejia<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'adrianmejia';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+
+  </div>
+</body>
+</html>
